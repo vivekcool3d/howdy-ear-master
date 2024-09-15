@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    
+    <artifactId>howdy-app</artifactId>
+    <groupId>io.corbs</groupId>
+    <version>1.0.0.SNAP</version>
+    <packaging>pom</packaging>
+    <name>howdy-app</name>
+    <description>This project demonstrates how to package an EJB and WAR in an EAR; this is the top level POM file</description>
+
+    <modules>
+        <module>ejb</module>
+        <module>web</module>
+        <module>ear</module>
+    </modules>
+
+
+	<properties>
+		<jdk.version>17</jdk.version>
+		<spring.version>5.1.2.RELEASE</spring.version>
+		<junit.version>4.11</junit.version>
+		<log4j.version>1.2.17</log4j.version>
+		<sonar.host.url>http://localhost:9000/</sonar.host.url>
+		<sonar.login>sqa_d83c33a3c00964fa0c814e1fbb300e23b7f63187</sonar.login>
+		<!--<sonar.password>sonar</sonar.password> -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.release>17</maven.compiler.release>
+	</properties>
+	
+	
+    <dependencyManagement>
+        <dependencies>
+            <!-- Define the version of the EJB jar so that we don't need
+                to repeat ourselves in every module -->
+            <dependency>
+                <groupId>io.corbs</groupId>
+                <artifactId>ear-ejb</artifactId>
+                <version>${project.version}</version>
+                <type>ejb</type>
+            </dependency>
+
+            <!-- Define the version of the WAR so that we don't need to repeat
+                ourselves in every module -->
+            <dependency>
+                <groupId>io.corbs</groupId>
+                <artifactId>ear-web</artifactId>
+                <version>${project.version}</version>
+                <type>war</type>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+</project>

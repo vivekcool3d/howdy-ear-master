@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>io.corbs</groupId>
+        <artifactId>howdy-app</artifactId>
+        <version>1.0.0.SNAP</version>
+    </parent>
+    <artifactId>howdy-ear</artifactId>
+    <packaging>ear</packaging>
+    <name>howdy-ear</name>
+    <description>Howdy Ear Packaging, packs up ejb, war modules as an ear</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.corbs</groupId>
+            <artifactId>howdy-ejb</artifactId>
+            <version>1.0.0.SNAP</version>
+            <type>ejb</type>
+        </dependency>
+        <dependency>
+            <groupId>io.corbs</groupId>
+            <artifactId>howdy-web</artifactId>
+            <version>1.0.0.SNAP</version>            
+            <type>war</type>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>${project.parent.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-ear-plugin</artifactId>
+                <version>3.0.1</version>
+                <configuration>
+                    <version>7</version>
+                    <!-- libs is on classpath for ejb and war modules to use -->
+                    <defaultLibBundleDir>lib</defaultLibBundleDir>
+                    <modules>
+                        <webModule>
+                            <groupId>io.corbs</groupId>
+                            <artifactId>howdy-web</artifactId>
+                            <contextRoot>/howdy-web</contextRoot>
+                        </webModule>
+                    </modules>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
